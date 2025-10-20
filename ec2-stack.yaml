@@ -1,37 +1,39 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: "Einfaches EC2-Deployment"
+Description: "CloudFormation Template zum automatischen Erstellen einer EC2-Instanz"
 
 Parameters:
   InstanceType:
     Type: String
     Default: t2.micro
+    Description: "EC2 Instanztyp"
+    
   ImageId:
     Type: String
     Default: ami-0cbcbef074db940ca
+    Description: "AMI ID für die EC2-Instanz"
+    
   SecurityGroupId:
     Type: String
     Default: sg-0a26919cb467cc0fe
+    Description: "Vorhandene Security Group ID"
 
 Resources:
-    EC2Instance:
+  EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: !Ref InstanceType
       ImageId: !Ref ImageId
       SecurityGroupIds: !Ref SecurityGroupId
-      # Optional: UserData für automatische Befehle beim Start
-      # UserData: !Base64 |
-      #   #!/bin/bash
-      #   yum update -y
-      #   echo "Hello from CloudFormation" > /var/www/html/index.html
 
 Outputs:
   InstanceId:
-    Description: ID der erstellten Instanz
+    Description: "ID der erstellten EC2-Instanz"
     Value: !Ref EC2Instance
+    
   PublicIP:
-    Description: Öffentliche IP-Adresse (falls öffentliches Subnetz)
+    Description: "Öffentliche IP-Adresse der EC2-Instanz"
     Value: !GetAtt EC2Instance.PublicIp
+
 
 
 
