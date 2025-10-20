@@ -22,8 +22,7 @@ Resources:
     Properties:
       InstanceType: !Ref t2.micro
       ImageId: !Ref ami-09ef60b91997f99dc
-      SecurityGroupIds:
-        - !Ref sg-0a26919cb467cc0fe
+      SecurityGroupIds: !Ref sg-0a26919cb467cc0fe
       SubnetId: !Ref subnet-0167fa936a6d35ea9
       Tags:
         - Key: Name
@@ -41,3 +40,4 @@ Outputs:
   PublicIP:
     Description: Öffentliche IP-Adresse (falls öffentliches Subnetz)
     Value: !GetAtt EC2Instance.PublicIp
+
