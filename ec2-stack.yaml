@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: "2025-10-20"
+Description: "Einfaches EC2-Deployment"
+
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t2.micro
+    Description: EC2 Instanztyp
+  ImageId:
+    Type: String
+    Description: ID ami-09ef60b91997f99dc
+  SecurityGroupId:
+    Type: String
+    Description: ID sg-0a26919cb467cc0fe
+  SubnetId:
+    Type: String
+    Description: ID subnet-0167fa936a6d35ea9
+
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref t2.micro
+      ImageId: !Ref ami-09ef60b91997f99dc
+      SecurityGroupIds:
+        - !Ref sg-0a26919cb467cc0fe
+      SubnetId: !Ref subnet-0167fa936a6d35ea9
+      Tags:
+        - Key: Name
+          Value: Simple-EC2-Instance
+      # Optional: UserData für automatische Befehle beim Start
+      # UserData: !Base64 |
+      #   #!/bin/bash
+      #   yum update -y
+      #   echo "Hello from CloudFormation" > /var/www/html/index.html
+
+Outputs:
+  InstanceId:
+    Description: ID der erstellten Instanz
+    Value: !Ref EC2Instance
+  PublicIP:
+    Description: Öffentliche IP-Adresse (falls öffentliches Subnetz)
+    Value: !GetAtt EC2Instance.PublicIp
