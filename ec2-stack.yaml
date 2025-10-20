@@ -11,9 +11,6 @@ Parameters:
   SecurityGroupId:
     Type: String
     Default: sg-0a26919cb467cc0fe
-  SubnetId:
-    Type: String
-    Description: ID subnet-0167fa936a6d35ea9
 
 Resources:
     EC2Instance:
@@ -22,10 +19,6 @@ Resources:
       InstanceType: !Ref InstanceType
       ImageId: !Ref ImageId
       SecurityGroupIds: !Ref SecurityGroupId
-      SubnetId: !Ref subnet-0167fa936a6d35ea9
-      Tags:
-        - Key: Name
-          Value: Simple-EC2-Instance
       # Optional: UserData für automatische Befehle beim Start
       # UserData: !Base64 |
       #   #!/bin/bash
@@ -39,6 +32,7 @@ Outputs:
   PublicIP:
     Description: Öffentliche IP-Adresse (falls öffentliches Subnetz)
     Value: !GetAtt EC2Instance.PublicIp
+
 
 
 
