@@ -23,7 +23,8 @@ Resources:
     Properties:
       InstanceType: !Ref InstanceType
       ImageId: !Ref ImageId
-      SecurityGroupIds: !Ref SecurityGroupId
+      SecurityGroupIds:
+        - !Ref SecurityGroupId
 
 Outputs:
   InstanceId:
@@ -33,6 +34,7 @@ Outputs:
   PublicIP:
     Description: "Öffentliche IP-Adresse der EC2-Instanz"
     Value: !GetAtt EC2Instance.PublicIp
+
 
 
 
