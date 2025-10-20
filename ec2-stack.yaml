@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: "2025-10-20"
+AWSTemplateFormatVersion: "2010-09-09"
 Description: "Einfaches EC2-Deployment"
 
 Parameters:
@@ -40,4 +40,5 @@ Outputs:
   PublicIP:
     Description: Öffentliche IP-Adresse (falls öffentliches Subnetz)
     Value: !GetAtt EC2Instance.PublicIp
+
 
